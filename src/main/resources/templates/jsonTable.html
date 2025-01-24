@@ -76,12 +76,33 @@
             font-size: 18px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for better appearance */
         }
+        .search-again-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4cafa0; /* Green background */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 18px;
+            border: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-again-button:hover {
+            background-color: #45a093; /* Slightly darker green on hover */
+        }
+
     </style>
 </head>
 <body>
 <div class="welcome-message">
     Хэрэглэгч: {fullName}
 </div>
+
+<button class="search-again-button" onclick="window.location.href='{searchUrl}';">Search Again</button>
 <h2>{header}</h2>
 <table>
     {#if jsonArray.size() > 0}
@@ -105,9 +126,9 @@
     {/if}
 </table>
 <div class="pagination-container">
-    <button onclick="window.location.href='{urlPath}?searchKey={searchKey}&searchValue={searchValue}&page={previousPage}&pageSize={pageSize}';">&lt; Previous</button>
+    <button onclick="window.location.href='{tableUrl}?searchKey={searchKey}&searchValue={searchValue}&page={previousPage}&pageSize={pageSize}';">&lt; Previous</button>
     <div class='page-number'>Page {page}/{lastPage}</div>
-    <button onclick="window.location.href='{urlPath}?searchKey={searchKey}&searchValue={searchValue}&page={nextPage}&pageSize={pageSize}';">Next &gt;</button>
+    <button onclick="window.location.href='{tableUrl}?searchKey={searchKey}&searchValue={searchValue}&page={nextPage}&pageSize={pageSize}';">Next &gt;</button>
 </div>
 </body>
 </html>

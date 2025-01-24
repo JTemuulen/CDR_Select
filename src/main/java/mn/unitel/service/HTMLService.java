@@ -34,7 +34,8 @@ public class HTMLService {
                 .data("title", "CDR Data")
                 .data("fullName", fullName)
                 .data("header", "CDR Data")
-                .data("urlPath", "/cdr/xml")
+                .data("tableUrl", "/cdr/xml")
+                .data("searchUrl", "/search_form")
                 .data("jsonArray", cdrData)  // Pass cdrData here
                 .data("searchKey", searchKey)
                 .data("searchValue", searchValue)
