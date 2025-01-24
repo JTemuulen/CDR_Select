@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+    <style>
+        /* Apply styles to center the form */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            height: 100vh; /* Take full viewport height */
+            margin: 0; /* Remove default body margin */
+            background-color: #f4f4f4; /* Optional background color */
+        }
+
+        .form-container {
+            background-color: white; /* Background color for form */
+            padding: 30px; /* Add more space around the form */
+            border-radius: 8px; /* Optional rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Optional shadow */
+            width: 400px; /* Set a wider width for the form */
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px; /* Increase title size */
+            margin-bottom: 20px; /* Add space below title */
+        }
+
+        label {
+            font-size: 18px; /* Increase label font size */
+            margin-bottom: 10px; /* Add space below label */
+            display: block;
+        }
+
+        input {
+            width: 100%; /* Make the input take full width */
+            padding: 12px; /* Increase padding */
+            margin-bottom: 16px; /* Add more space between inputs */
+            border-radius: 6px; /* Rounded corners for inputs */
+            border: 1px solid #ccc; /* Light border color */
+            font-size: 16px; /* Larger font inside inputs */
+            box-sizing: border-box; /* Include padding in the element's width */
+            padding-right: 20px; /* Add space on the right side inside input */
+        }
+
+        button {
+            width: 100%; /* Make the button take full width */
+            padding: 14px; /* Increase padding for the button */
+            background-color: #4cafa0; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 6px; /* Rounded button corners */
+            cursor: pointer;
+            font-size: 18px; /* Larger font size for the button */
+            box-sizing: border-box; /* Ensure button uses the full width available */
+        }
+
+        button:hover {
+            background-color: #4cafa0; /* Darker button color on hover */
+        }
+        .welcome-message {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4cafa0; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="welcome-message">
+    Тавтай морил {fullName}
+</div>
+<div class="form-container">
+    <h2>{header}</h2>
+    <form action="{action}" method="GET">
+        <label for="search_key">Search Key: </label>
+        <input type="text" id="search_key" name="SearchKey" required placeholder="phone_number, imei, ect" /><br>
+
+        <label for="search_value">Search Value: </label>
+        <input type="text" id="search_value" name="SearchValue" required placeholder="99001122, 356546966494290, ect" /><br>
+
+        <label for="page">Page: </label>
+        <input type="number" id="page" name="Page" required /><br>
+
+        <label for="page_size">Page Size: </label>
+        <input type="number" id="page_size" name="PageSize" required /><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

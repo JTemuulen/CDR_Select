@@ -1,0 +1,35 @@
+<Configuration>
+    <Queries>
+
+        <Query id = "select_cdr" service = "call and sms" smsDirection = "out and in">
+
+            <ReturnJson sort="latest/desc" sortColumn ="start_date_time">
+              <Fields>                                                          <!--  numberType: 0-(n), 1-(+n), 2-(tel:n), 3-(tel:+n)-->
+                    <Field index="15" value="Calling number"         label="calling_number"          dataType="String"  numberType="2"/>
+                    <Field index="9" value="Dialled party addr"       label="dialled_party_addr"      dataType="String"  numberType="1"/>
+                    <Field index="14" value="Imei"                  label="imei"                    dataType="String"   numberType="0"/>
+                    <Field index="1" value="Cdr date"                label="cdr_date"                dataType="String"   numberType="0"/>
+                    <Field index="4" value="Start date time"          label="start_date_time"         dataType="String"   numberType="0"/>
+                    <Field index="6" value="End date time"            label="end_date_time"           dataType="String"   numberType="0"/>
+                    <Field index="8" value="Duration"               label="duration"                dataType="String"   numberType="0"/>
+                    <Field index="11" value="Accounting record type"  label="accounting_record_type"  dataType="String"   numberType="0"/>
+                    <Field index="12" value="Service type"           label="service_type"            dataType="String"   numberType="0"/>
+<!--                    <Field index="2" value="Cdr type"                label="cdr_type"                dataType="String"   numberType="0"/>-->
+<!--                    <Field index="3" value="Record type"             label="record_type"             dataType="String"   numberType="0"/>-->
+<!--                    <Field index="5" value="Rec opening time"         label="rec_opening_time"        dataType="String"   numberType="0"/>-->
+<!--                    <Field index="7" value="Rec closure time"         label="rec_closure_time"        dataType="String"   numberType="0"/>-->
+<!--                    <Field index="10" value="Ringing duration"       label="ringing_duration"        dataType="String"   numberType="0"/>-->
+<!--                    <Field index="13" value="Imsi"                  label="imsi"                    dataType="String"   numberType="0"/>-->
+<!--                    <Field index="16" value="Translated number"      label="translated_number"       dataType="String"   numberType="0"/>-->
+<!--                    <Field index="17" value="Connected num"          label="connected_num"           dataType="String"  numberType="3"/>-->
+<!--                    <Field index="18" value="Recording entity"       label="recording_entity"        dataType="String"   numberType="0"/>-->
+<!--                    <Field index="19" value="Location"              label="location"                dataType="String"   numberType="0"/>-->
+<!--                    <Field index="20" value="Cell id"                label="cell_id"                 dataType="String"   numberType="0"/>-->
+<!--                    <Field index="21" value="Basic service"          label="basic_service"           dataType="String"   numberType="0"/>-->
+<!--                    <Field index="22" value="Answer time"            label="answer_time"             dataType="String"   numberType="0"/>-->
+                </Fields>
+            </ReturnJson>
+
+        </Query>
+    </Queries>
+</Configuration>

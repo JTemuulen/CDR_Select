@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+        h2 { text-align: center; color: #333; }
+        table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #4cafa0; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        tr:hover { background-color: #ddd; }
+
+        .pagination-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px; /* Slightly larger font size */
+            background-color: #fff;
+            padding: 12px 18px; /* Moderate padding */
+            border: 1px solid #4cafa0; /* Thin border */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15); /* Balanced shadow */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between elements */
+        }
+
+        .pagination-container .page-number {
+            font-size: 16px; /* Larger font size */
+            font-weight: bold;
+            padding: 6px 12px; /* Slightly larger padding */
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px; /* Rounded corners */
+            color: #333;
+        }
+
+        .pagination-container button {
+            font-size: 14px; /* Larger font size */
+            font-weight: bold;
+            width: 100px; /* Larger fixed width */
+            height: 40px; /* Slightly larger height */
+            padding: 10px 10px; /* Balanced padding */
+            background-color: #4cafa0;
+            color: white;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: all 0.2s ease; /* Smooth transition */
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .pagination-container button:hover {
+            background-color: #459e92; /* Slightly darker shade on hover */
+            transform: scale(1.05); /* Minor zoom effect on hover */
+        }
+
+        .pagination-container button:disabled {
+            background-color: #c6c6c6; /* Disabled button color */
+            cursor: not-allowed;
+            box-shadow: none; /* Remove shadow for disabled state */
+        }
+
+        .welcome-message {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4cafa0; /* Updated to green */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 18px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for better appearance */
+        }
+    </style>
+</head>
+<body>
+<div class="welcome-message">
+    Хэрэглэгч: {fullName}
+</div>
+<h2>{header}</h2>
+<table>
+    {#if jsonArray.size() > 0}
+        <tr>
+            {#for key in jsonArray.getJsonObject(0).fieldNames()}
+                <th>{key}</th>
+            {/for}
+        </tr>
+        {#for jsonObject in jsonArray}
+        <tr>
+            {#for key in jsonObject.fieldNames()}
+            <td>{jsonObject.getString(key)}</td>
+            {/for}
+        </tr>
+        {/for}
+
+        {#else}
+            <tr>
+                <td colspan="100%">No data available</td>
+            </tr>
+    {/if}
+</table>
+<div class="pagination-container">
+    <button onclick="window.location.href='{urlPath}?searchKey={searchKey}&searchValue={searchValue}&page={previousPage}&pageSize={pageSize}';">&lt; Previous</button>
+    <div class='page-number'>Page {page}/{lastPage}</div>
+    <button onclick="window.location.href='{urlPath}?searchKey={searchKey}&searchValue={searchValue}&page={nextPage}&pageSize={pageSize}';">Next &gt;</button>
+</div>
+</body>
+</html>
