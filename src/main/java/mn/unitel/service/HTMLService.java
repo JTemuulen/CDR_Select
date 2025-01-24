@@ -3,9 +3,7 @@ package mn.unitel.service;
 import io.quarkus.qute.Template;
 import io.vertx.core.json.JsonArray;
 import jakarta.enterprise.context.ApplicationScoped;
-import io.vertx.core.json.JsonObject;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.CookieParam;
 import jakarta.ws.rs.core.Response;
 
 import java.io.UnsupportedEncodingException;
@@ -36,7 +34,7 @@ public class HTMLService {
                 .data("header", "CDR Data")
                 .data("tableUrl", "/cdr/xml")
                 .data("searchUrl", "/search_form")
-                .data("jsonArray", cdrData)  // Pass cdrData here
+                .data("jsonArray", cdrData)
                 .data("searchKey", searchKey)
                 .data("searchValue", searchValue)
                 .data("page", page)

@@ -1,11 +1,8 @@
 package mn.unitel.endpoint;
 
-import io.quarkus.security.Authenticated;
 import io.smallrye.jwt.auth.principal.JWTParser;
 import io.smallrye.jwt.auth.principal.ParseException;
 import io.vertx.core.json.JsonArray;
-import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,7 +12,6 @@ import mn.unitel.service.HTMLService;
 import org.jboss.resteasy.reactive.RestQuery;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 @Path("/cdr")
 public class CdrMethods {

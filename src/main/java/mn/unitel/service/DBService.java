@@ -115,10 +115,13 @@ public class DBService {
         Query query = cs.getQuery("select_cdr");
 
         String selectQuery = "select * from cdrs where ";
+
+        //counting attribute fields to compare
         int keyNumber = 0;
         if(searchKey.equals("phone_number"))    {selectQuery += "calling_number=? or dialled_party_addr=?"; keyNumber=2;}
         else                {selectQuery += (searchKey + "=?"); keyNumber=1;}
 
+        //record types to show
         List<String> recordTypes = new ArrayList<>();
         String service = query.getService();
         String smsDirection = query.getSmsDirection();
@@ -135,14 +138,14 @@ public class DBService {
         }
         selectQuery += ")";
 
+        //sort
         String sort = query.getReturnJson().getSort();
         if(sort.contains("desc")) selectQuery += (" order by " + query.getReturnJson().getSortColumn() + " desc");
         if(sort.contains("asc")) selectQuery += (" order by " + query.getReturnJson().getSortColumn() + " asc");
 
+        //pagination
         int offsetValue = (page-1)*pageSize;
         int fetchValue = pageSize;
-
-        // OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY;
         selectQuery += ( " offset " + offsetValue + " rows fetch next " + fetchValue + " rows only");
 
         System.out.println(selectQuery);
@@ -152,6 +155,7 @@ public class DBService {
         try(Connection connection = ds.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)){
 
+            //param values
             if(keyNumber == 2){
                 String calledNumber = "+" + searchValue;
                 preparedStatement.setString(1, calledNumber);
@@ -169,15 +173,21 @@ public class DBService {
 
             List<Field> fields = query.getReturnJson().getFields();
             int columnCount = fields.size();
+
+            //No of row starting index
             int rowNo = 1 + (page-1)*pageSize;
             while (rs.next()) {
                     JsonObject cdr = new JsonObject();
                     cdr.put("No", rowNo);
+
+                    //for through all fields in conf.xml
                     for(int i = 1; i <= columnCount; i++) {
                         Field field = fields.get(i - 1);
                         String label = field.getLabel();
+                        //labelName to print
                         String labelName = field.getValue();
                         String fieldDataType = field.getDataType();
+                        //Dynamic get func
                         String resultGet = "get" + fieldDataType.substring(0, 1).toUpperCase() + fieldDataType.substring(1).toLowerCase();
                         Method method = ResultSet.class.getMethod(resultGet, String.class);
                         Object fieldValue = method.invoke(rs, label);
